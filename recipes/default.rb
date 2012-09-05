@@ -116,9 +116,9 @@ end
 
 # If logrotate is included then use it
 if node.recipes.include?('logrotate')
-  logrotate_app "system" do
+  logrotate_app "elasticsearch" do
     cookbook "logrotate"
-    path [node.elasticsearch[:log_path]]
+    path ["#{node.elasticsearch[:log_path]}/*.log"]
     size "5M"
     rotate 10
     create "644 root adm"
