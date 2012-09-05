@@ -10,6 +10,7 @@ depends 'ark'
 recommends 'java'
 recommends 'monit'
 recommends 'nginx'
+recommends 'logrotate'
 
 provides 'elasticsearch'
 provides 'service[elasticsearch]'

@@ -113,3 +113,14 @@ else
   # ... if we aren't using monit, let's reopen the elasticsearch service and start it
   service("elasticsearch") { action :start }
 end
+
+# If logrotate is included then use it
+if node.recipes.include?('logrotate')
+  logrotate_app "system" do
+    cookbook "logrotate"
+    path [node.elasticsearch[:log_path]]
+    size "5M"
+    rotate 10
+    create "644 root adm"
+  end
+end
